@@ -20,7 +20,21 @@ function eventListeners() {
 // !add todo to list
 function addNewToDo(e) {
   if (todoInput.value === "") {
-    alert("bir todo daxil edin");
+    todoList.innerHTML += `
+      <li class="task-list-li draggable" draggable="true">
+             ${todoInput.value}
+             <img src="./img/timesIcon.svg" alt="remove" id="delete-img"
+             onmouseover="redImg(this)" onmouseout="normalImg(this)" onclick="deleteTodo(this)" 
+             />
+     </li> 
+     `;
+    todosArr.push(todoInput.value);
+    todoInput.value = "";
+    inputContainer.style.display = "none";
+    todoList.style.borderRadius = "10px";
+    todoList.style.border = "1px solid #c4c4c4";
+    todoList.scrollTop = todoList.scrollHeight;
+    console.log(todosArr)
   } else {
     todoList.innerHTML += `
       <li class="task-list-li draggable" draggable="true">
